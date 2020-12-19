@@ -1,0 +1,19 @@
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        server_version: '5.7'
+        charset: utf8
+        default_table_options:
+            charset: utf8
+        url: '%env(resolve:DATABASE_URL)%'
+
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            App\Domain:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Comment/Infrastructure/config/orm'
+                prefix: 'App\Comment\Domain\Entity' #For every entity with this namespace, it will check for the configuration in dir

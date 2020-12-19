@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    public: true
+
+  App\Tests\Comment\Infrastructure\Fixtures\CommentFixture:
+    tags:
+      - { "name": "doctrine.fixture.orm" }
+  
+  Test.CommentRepository: '@App\Comment\Infrastructure\CommentRepository'
+  Test.event_bus: '@event_bus'
