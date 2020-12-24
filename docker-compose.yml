@@ -23,6 +23,8 @@ services:
       image: nikfilias/comments-adapter
       depends_on: 
         - db
+      volumes: 
+        - ../comments-adapter/:/app
 
 
     db:

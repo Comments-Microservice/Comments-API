@@ -42,7 +42,7 @@ class CommentPostEndpointTest extends WebTestCase {
     public function endpointCreatesAnEventOnTheEventBus() {
 
         $eventBus = $this->bootKernel()->getContainer()->get('Test.event_bus');
-        var_dump($eventBus);
+        $serializer = self::bootKernel()->getContainer()->get('jms_serializer');
 
         $endpoint = new CommentPostEndpoint($eventBus);
 

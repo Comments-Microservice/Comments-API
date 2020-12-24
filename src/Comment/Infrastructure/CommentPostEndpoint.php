@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Envelope;
 
 class CommentPostEndpoint extends AbstractController {
 
@@ -29,7 +30,7 @@ class CommentPostEndpoint extends AbstractController {
             $request->request->get('userId'), 
             $request->request->get('comment')
         );
-        $commentUpsertedEvent = new CommentUpsertedEvent($comment);
+        $commentUpsertedEvent = new CommentUpsertedEvent($comment);   
 
         $this->eventBus->dispatch($commentUpsertedEvent);
         return new Response('success');

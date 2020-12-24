@@ -7,7 +7,7 @@ use App\Comment\Domain\ValueObject\CommentUpsertedEvent;
 
 class CommentEventBus implements MessageHandlerInterface {
 
-    public function __invoke(CommentUpsertedEvent $event) {
+    public function __invoke(string $event) {
         echo 'Sending Upserted Event now';
     }
 

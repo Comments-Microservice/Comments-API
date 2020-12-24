@@ -34,4 +34,4 @@ RUN echo 'alias sf="php app/console"' >> ~/.bashrc \
 
 WORKDIR /app
 
-COPY . /app
+COPY ../ /app
