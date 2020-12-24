@@ -4,7 +4,8 @@ ARG TIMEZONE
 RUN apt-get update && apt-get install -y \
     openssl \
     git \
-    unzip
+    unzip \
+    librabbitmq-dev
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
@@ -17,9 +18,11 @@ RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} >
 
 # install xdebug
 RUN pecl install xdebug \
+&& pecl install amqp \
 && docker-php-ext-enable xdebug \
 && docker-php-ext-install pdo pdo_mysql \
 && docker-php-ext-install sockets \
+&& docker-php-ext-enable amqp \
 && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
 && echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
 && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \

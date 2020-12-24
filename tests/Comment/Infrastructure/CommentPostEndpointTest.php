@@ -41,8 +41,8 @@ class CommentPostEndpointTest extends WebTestCase {
     /** @test */
     public function endpointCreatesAnEventOnTheEventBus() {
 
-        /** @var EventBus $eventBus */
         $eventBus = $this->bootKernel()->getContainer()->get('Test.event_bus');
+        var_dump($eventBus);
 
         $endpoint = new CommentPostEndpoint($eventBus);
 

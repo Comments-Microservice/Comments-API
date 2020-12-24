@@ -7,4 +7,4 @@ services:
       - { "name": "doctrine.fixture.orm" }
   
   Test.CommentRepository: '@App\Comment\Infrastructure\CommentRepository'
-  Test.event_bus: '@event_bus'
+  Test.event_bus: '@Symfony\Component\Messenger\MessageBusInterface'

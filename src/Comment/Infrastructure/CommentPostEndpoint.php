@@ -7,13 +7,11 @@ use App\Comment\Domain\ValueObject\CommentUpsertedEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use SimpleBus\SymfonyBridge\Bus\EventBus;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class CommentPostEndpoint extends AbstractController {
 
-    private $eventBus;
-
-    public function __construct(EventBus $eventBus) {
+    public function __construct(MessageBusInterface $eventBus) {
         $this->eventBus = $eventBus;
     }
 
@@ -33,7 +31,7 @@ class CommentPostEndpoint extends AbstractController {
         );
         $commentUpsertedEvent = new CommentUpsertedEvent($comment);
 
-        $this->eventBus->handle($commentUpsertedEvent);
+        $this->eventBus->dispatch($commentUpsertedEvent);
         return new Response('success');
     }
 }
