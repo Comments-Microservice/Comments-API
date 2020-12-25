@@ -41,7 +41,7 @@ services:
 
     App\Comment\Infrastructure\CommentPostEndpoint:
         arguments:
-            $eventBus: '@@Symfony\Component\Messenger\MessageBusInterface'
+            $eventBus: '@Symfony\Component\Messenger\MessageBusInterface'
 
     events_serializer:
         class:  App\Comment\Infrastructure\ExternalJsonMessageSerializer
